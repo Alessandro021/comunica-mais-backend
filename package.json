@@ -5,7 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-   "start:dev": "nodemon ./src/index.js"
+   "start:dev": "nodemon ./src/index.js",
+   "migrate": "npx prisma db push",
+   "generate": "npx prisma generate"
   },
   "author": "Alessandro",
   "license": "MIT",

@@ -1,5 +1,8 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
+//https://www.prisma.io/docs/guides/upgrade-guides/upgrade-from-prisma-1/upgrade-from-mongodb-beta
+//https://www.prisma.io/docs/concepts/components/prisma-schema/relations
+
 
 generator client {
   provider = "prisma-client-js"
@@ -15,11 +18,26 @@ model User {
    name String
    email String @unique
    password String
-   profileImage String
-   bio String
+   profileImage String @default("null")
+   bio String @default("null")
    created_at DateTime @default(now())
    updated_at DateTime @default(now())
 
   @@map("user")
   @@index([email, name])
+}
+
+model Photo {
+   id     String @id @default(auto()) @map("_id") @db.ObjectId
+   image String
+   title String
+   likes BigInt
+   comments String
+   userName String
+   userID String @db.ObjectId()
+   created_at DateTime @default(now())
+   updated_at DateTime @default(now())
+
+  @@map("photo")
+  @@index([image])
 }

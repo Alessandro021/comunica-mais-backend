@@ -14,3 +14,10 @@ export const userCreateValidation = () => {
             })
     ];
 };
+
+export const loginValidation = () => {
+    return [
+        body("email").isString().withMessage("O email é obrigatório").isEmail().withMessage("O email deve ser valido."),
+        body("password").isString().withMessage("A senha é obrigatória").isLength(6).withMessage("A senha deve ter no minimo 6 caracteres."),
+    ];
+};

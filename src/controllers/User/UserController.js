@@ -31,3 +31,11 @@ export const login = async (req, res) => {
     return res.status(200).json({error: false, result: result});
 };
 
+
+export const getCurrentUser = async (req, res) => {
+    const  user = req.user;
+
+    return res.status(200).json({error: false, result: user});
+};
+
+

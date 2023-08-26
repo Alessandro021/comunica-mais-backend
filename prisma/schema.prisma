@@ -31,8 +31,8 @@ model Photo {
    id     String @id @default(auto()) @map("_id") @db.ObjectId
    image String
    title String
-   likes BigInt
-   comments String
+   likes BigInt //alterar
+   comments String //alterar
    userName String
    userID String @db.ObjectId()
    created_at DateTime @default(now())

@@ -35,7 +35,7 @@ export const authGuard = async (req, res, next) => {
 
 
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         return res.status(500).json({error: true, message: "Usuario não autorizado"});
     } finally {
         await prisma.$disconnect();

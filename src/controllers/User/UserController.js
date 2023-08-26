@@ -1,5 +1,6 @@
 import { registerProvider } from "../../provider/User/UserRegisterProvider.js";
 import { loginProvider } from "../../provider/User/UserLoginProvider.js";
+import { updateUserProvider } from "../../provider/User/UserUpdateProvider.js";
 
 export const register = async (req, res) => {
     const {name, password, email} = req.body;
@@ -36,6 +37,26 @@ export const getCurrentUser = async (req, res) => {
     const  user = req.user;
 
     return res.status(200).json({error: false, result: user});
+};
+
+export const updateUser = async (req, res) => {
+
+    const  {name, password, bio} = req.body;
+
+    let profileImage = null;
+
+    if(req.file){
+        profileImage = req.file.filename;
+    }
+
+    const userId = req.user.id;
+
+    const result = await updateUserProvider({name, password, bio, profileImage}, userId);
+    if(result instanceof Error) {
+        return res.status(422).json({error: true, message: result.message});
+    }
+
+    return res.status(204).send();
 };
 
 

@@ -17,16 +17,20 @@ const imageaStore = multer.diskStorage({
     },
     filename: (req, file, callback) => {
         callback(null, randomUUID() + path.extname(file.originalname));
-        console.log(randomUUID() + path.extname(file.originalname));
     }
 });
 
 export const imageUpload = multer({
     storage: imageaStore,
     fileFilter: (req, file, callback) => {
-        if(!file.originalname.match(/\.(jpg|jpeg)$/)){
-            return callback(new Error("Atenção a extenção da imagem deve ser png ou jpg"));
+        try {
+            if(!file.originalname.match(/\.(jpg|jpeg)$/)){
+                return callback(new Error("Atenção a extenção da imagem deve ser png ou jpg"));
+            }
+            callback(null, true);
+        } catch (error) {
+            callback(error, false);
+            return callback(new Error("Houve um erro ao tentar enviar o arquivo."));
         }
-        callback(undefined, true);
     }
 });

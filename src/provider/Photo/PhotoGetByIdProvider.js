@@ -5,7 +5,6 @@ export const getPhotoByIdProvider = async (photoId) => {
         const photo = await prisma.photo.findFirst({
             where: {id: photoId},
             include: {
-                likes: true,
                 comments: true, 
             }
         });

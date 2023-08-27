@@ -19,8 +19,8 @@ model User {
    name String
    email String @unique
    password String
-   profileImage String @default("null")
-   bio String @default("null")
+   profileImage String? //@default("null")
+   bio String? //@default("null")
    created_at DateTime @default(now())
    updated_at DateTime @default(now())
 
@@ -32,7 +32,7 @@ model Photo {
    id     String @id @default(auto()) @map("_id") @db.ObjectId
    image String
    title String
-   likes Likes?
+   likes String[]
    comments Comments[]
    userName String
    userId String @db.ObjectId()
@@ -43,18 +43,12 @@ model Photo {
   @@index([image])
 }
 
-model Likes {
-  id     String @id @default(auto()) @map("_id") @db.ObjectId
-  quantidade BigInt
-  photo  Photo @relation( fields: [photoId], references: [id])
-  photoId  String @unique() @db.ObjectId
-
-  @@map("like")
-}
-
 model Comments {
   id     String @id @default(auto()) @map("_id") @db.ObjectId
   comment String
+  userName String
+  userImage String
+  userId String
   photo Photo @relation(fields: [photoId], references: [id])
   photoId  String @db.ObjectId 
 

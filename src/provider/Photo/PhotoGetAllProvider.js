@@ -7,8 +7,7 @@ export const getAllPhotoProvider = async () => {
                 created_at: "desc"
             },
             include: {
-                comments: true,
-                likes: true
+                comments: true
             }
         });
 

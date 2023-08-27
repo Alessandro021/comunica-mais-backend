@@ -12,3 +12,16 @@ export const photoInsertValidation = () => {
         })
     ];
 };
+
+
+export const photoUpdateValidation = () => {
+    return (
+        body("title").optional().isString().withMessage("O titulo é obrigatorio").isLength({min: 3}).withMessage("O title precisa ter no minimo 3 caracterers.")
+    );
+};
+
+export const commentPhotoValidation = () => {
+    return (
+        body("comment").isString().withMessage("O comentario é obrigatorio")
+    );
+};

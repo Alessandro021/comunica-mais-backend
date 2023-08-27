@@ -9,7 +9,6 @@ export const getUserPhotosProvider = async (userId) => {
                 created_at: "desc"
             },
             include: {
-                likes: true,
                 comments: true,
             }
         });

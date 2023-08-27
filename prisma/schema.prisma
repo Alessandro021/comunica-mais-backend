@@ -2,6 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 //https://www.prisma.io/docs/guides/upgrade-guides/upgrade-from-prisma-1/upgrade-from-mongodb-beta
 //https://www.prisma.io/docs/concepts/components/prisma-schema/relations
+//https://www.prisma.io/docs/concepts/components/prisma-schema/relations
 
 
 generator client {
@@ -31,13 +32,31 @@ model Photo {
    id     String @id @default(auto()) @map("_id") @db.ObjectId
    image String
    title String
-   likes BigInt //alterar
-   comments String //alterar
+   likes Likes?
+   comments Comments[]
    userName String
-   userID String @db.ObjectId()
+   userId String @db.ObjectId()
    created_at DateTime @default(now())
    updated_at DateTime @default(now())
 
   @@map("photo")
   @@index([image])
+}
+
+model Likes {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  quantidade BigInt
+  photo  Photo @relation( fields: [photoId], references: [id])
+  photoId  String @unique() @db.ObjectId
+
+  @@map("like")
+}
+
+model Comments {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  comment String
+  photo Photo @relation(fields: [photoId], references: [id])
+  photoId  String @db.ObjectId 
+
+  @@map("comment")
 }

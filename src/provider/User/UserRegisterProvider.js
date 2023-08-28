@@ -30,7 +30,7 @@ export const registerProvider = async (user) => {
         return {_id: newUser.id, token: tokenJwt};
 
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         return Error("Errro ao cadastrar usuario.");
     } finally {
         await prisma.$disconnect();

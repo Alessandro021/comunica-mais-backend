@@ -47,7 +47,7 @@ model Comments {
   id     String @id @default(auto()) @map("_id") @db.ObjectId
   comment String
   userName String
-  userImage String
+  userImage String?
   userId String
   photo Photo @relation(fields: [photoId], references: [id])
   photoId  String @db.ObjectId 

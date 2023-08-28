@@ -30,7 +30,7 @@ export const updatePhotoProvider = async (photoId, userId, title) => {
         }
 
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         return Error("Erro ao atualizar foto de publicação");
     } finally {
         await prisma.$disconnect();

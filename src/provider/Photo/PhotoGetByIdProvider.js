@@ -16,7 +16,7 @@ export const getPhotoByIdProvider = async (photoId) => {
         }
 
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         return Error("Erro ao buscar foto de publicação");
     } finally {
         await prisma.$disconnect();

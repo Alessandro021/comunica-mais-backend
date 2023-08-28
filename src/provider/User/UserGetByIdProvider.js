@@ -22,7 +22,7 @@ export const getUserByIdProvider = async (userId) => {
         }
 
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         return Error("Errro ao buscar usuario.");
     } finally {
         await prisma.$disconnect();

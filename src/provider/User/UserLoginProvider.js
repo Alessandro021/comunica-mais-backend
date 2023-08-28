@@ -22,7 +22,7 @@ export const loginProvider = async (user) => {
         return {_id: verifyUser.id, profileImage: verifyUser.profileImage ,token: tokenJwt};
 
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         return Error("Errro ao fazer login.");
     } finally {
         await prisma.$disconnect();

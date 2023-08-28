@@ -20,7 +20,7 @@ export const getUserPhotosProvider = async (userId) => {
         }
 
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         return Error("Erro ao buscar fotos de usuario");
     } finally {
         await prisma.$disconnect();

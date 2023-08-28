@@ -30,7 +30,7 @@ export const insertPhotoProvider = async (photo, userId) => {
         }
 
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         return Error("Erro ao adicionar foto");
     } finally {
         await prisma.$disconnect();

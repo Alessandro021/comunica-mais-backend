@@ -15,14 +15,19 @@ export const commentPhotoProvider = async (photoId, userId, comment) => {
             return Error("FOTO_NAO_EXISTE");
         }
 
+        const commentPhotoObject = {
+            comment: comment,
+            userName: user.name,
+            userId: user.id,
+            photoId: photoId
+        };
+
+        {user.profileImage !== "null" && (commentPhotoObject.userImage =  user.profileImage);}
+
+        
+
         const commentPhoto = await prisma.comments.create({
-            data: {
-                comment: comment,
-                userName: user.name,
-                userId: user.id,
-                userImage: user.profileImage,
-                photoId: photoId
-            }
+            data: {...commentPhotoObject}
         });
 
         if(commentPhoto){

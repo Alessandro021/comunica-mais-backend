@@ -1,10 +1,13 @@
 import {prisma} from "../../database/prisma/index.js";
 
-export const getAllPhotoProvider = async () => {
+export const searchPhotosProvider = async (filter) => {
     try {
         const photos = await prisma.photo.findMany({
-            orderBy: {
-                created_at: "desc"
+            where: {
+                title: {
+                    contains: filter,
+                    mode: "insensitive"
+                }
             },
             include: {
                 comments: true
@@ -14,12 +17,12 @@ export const getAllPhotoProvider = async () => {
         if(photos){
             return photos;
         } else {
-            return Error("Erro ao buscar fotos de publicações");
+            return Error("Erro ao buscar foto");
         }
-        
+
     } catch (error) {
         // console.log(error);
-        return Error("Erro ao buscar fotos de publicações");
+        return Error("Erro ao buscar foto");
     } finally {
         await prisma.$disconnect();
     }

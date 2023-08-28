@@ -23,7 +23,7 @@ export const updateUserProvider = async (user, userId) => {
         }
 
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         return Error("Errro ao atulizar usuario.");
     } finally {
         await prisma.$disconnect();

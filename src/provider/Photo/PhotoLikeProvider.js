@@ -26,7 +26,7 @@ export const likePhotoProvider = async (photoId, userId) => {
         }
 
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         return Error("Erro ao curtir foto de publicação");
     } finally {
         await prisma.$disconnect();

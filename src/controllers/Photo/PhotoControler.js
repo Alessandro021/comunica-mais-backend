@@ -18,7 +18,7 @@ export const insertPhoto = async (req, res) => {
     const result = await insertPhotoProvider({title, image}, userId);
 
     if(result instanceof Error){
-        return res.status(500).json({error: true, errors: result.message});
+        return res.status(500).json({error: true, errors: [result.message]});
     }
 
     return res.status(201).json({error: false, result: result});
@@ -34,11 +34,11 @@ export const deletePhoto = async (req, res) => {
 
     if(result instanceof Error){
         if(result.message === "FOTO_NAO_EXISTE"){
-            return res.status(404).json({error: true, errors: "Foto não encontrada"});
+            return res.status(404).json({error: true, errors: ["Foto não encontrada"]});
         } else if(result.message === "USUARIO_NAO_AUTORIZADO"){
-            return res.status(404).json({error: true, errors: "Ususario não autorizado para deletar foto."});
+            return res.status(404).json({error: true, errors: ["Ususario não autorizado para deletar foto."]});
         }
-        return res.status(500).json({error: true, errors: result.message});
+        return res.status(500).json({error: true, errors: [result.message]});
     }
 
     return res.status(200).json({error: false, result: result});
@@ -49,7 +49,7 @@ export const getAllPhoto = async (req, res) => {
     const result = await getAllPhotoProvider();
 
     if(result instanceof Error){
-        return res.status(500).json({error: true, errors: result.message});
+        return res.status(500).json({error: true, errors: [result.message]});
     }
 
     return res.status(200).json({error: false, result: result});
@@ -62,7 +62,7 @@ export const getUserPhotos = async (req, res) => {
     const result = await getUserPhotosProvider(userId);
 
     if(result instanceof Error){
-        return res.status(500).json({error: true, errors: result.message});
+        return res.status(500).json({error: true, errors: [result.message]});
     }
 
     return res.status(200).json({error: false, result: result});
@@ -76,9 +76,9 @@ export const getPhotoById = async (req, res) => {
 
     if(result instanceof Error){
         if(result.message === "FOTO_NAO_EXISTE"){
-            return res.status(404).json({error: true, errors: "Foto não encontrada"});
+            return res.status(404).json({error: true, errors: ["Foto não encontrada"]});
         }
-        return res.status(500).json({error: true, errors: result.message});
+        return res.status(500).json({error: true, errors: [result.message]});
     }
 
     return res.status(200).json({error: false, result: result});
@@ -96,9 +96,9 @@ export const updatePhoto = async (req, res) => {
 
     if(result instanceof Error){
         if(result.message === "FOTO_NAO_EXISTE"){
-            return res.status(404).json({error: true, errors: "Foto não encontrada"});
+            return res.status(404).json({error: true, errors: ["Foto não encontrada"]});
         }
-        return res.status(500).json({error: true, errors: result.message});
+        return res.status(500).json({error: true, errors: [result.message]});
     }
 
     return res.status(200).json({error: false, result: result});
@@ -114,11 +114,11 @@ export const likePhoto = async (req, res) => {
 
     if(result instanceof Error){
         if(result.message === "FOTO_NAO_EXISTE"){
-            return res.status(404).json({error: true, errors: "Foto não encontrada"});
+            return res.status(404).json({error: true, errors: ["Foto não encontrada"]});
         } else if(result.message === "FOTO_JA_CURTIDA"){
-            return res.status(422).json({error: true, errors: "Usuario ja curtiu essa foto"});
+            return res.status(422).json({error: true, errors: ["Usuario ja curtiu essa foto"]});
         }
-        return res.status(500).json({error: true, errors: result.message});
+        return res.status(500).json({error: true, errors: [result.message]});
     }
 
     return res.status(200).json({error: false, result: result});
@@ -133,9 +133,9 @@ export const commentPhoto = async (req, res) => {
     
     if(result instanceof Error){
         if(result.message === "FOTO_NAO_EXISTE"){
-            return res.status(404).json({error: true, errors: "Foto não encontrada"});
+            return res.status(404).json({error: true, errors: ["Foto não encontrada"]});
         }
-        return res.status(500).json({error: true, errors: result.message});
+        return res.status(500).json({error: true, errors: [result.message]});
     }
 
     return res.status(200).json({error: false, result: result});
@@ -147,7 +147,7 @@ export const searchPhotos = async (req, res) => {
     const result = await searchPhotosProvider(q);
     
     if(result instanceof Error){
-        return res.status(500).json({error: true, errors: result.message});
+        return res.status(500).json({error: true, errors: [result.message]});
     }
 
     return res.status(200).json({error: false, result: result});

@@ -2,6 +2,7 @@ import {prisma} from "../../database/prisma/index.js";
 import { generateHash } from "../../services/bcrypt/index.js";
 
 export const updateUserProvider = async (user, userId) => {
+    // console.log(user);
     try {
        
         let newObjectUser = {};

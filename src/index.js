@@ -5,7 +5,6 @@ import cors from "cors";
 import { route } from "./routes/routes.js";
 
 const app = express();
-const __dirname = path.resolve();
 
 
 app.use(json());
@@ -13,7 +12,7 @@ app.use(urlencoded({extended: false}));//ACEITAR FORMDATA
 app.use(cors({
     origin: "*"  
 }));
-app.use("/uploads", express.static(path.join(__dirname, "src", "/uploads")));
+app.use("/uploads", express.static(path.join("uploads")));
 app.use(route);
 
 app.listen(process.env.PORT || 3333, () => {

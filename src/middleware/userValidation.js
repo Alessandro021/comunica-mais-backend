@@ -23,9 +23,9 @@ export const loginValidation = () => {
     ];
 };
 
-export const userUpdateValidation = () => {
-    return [
-        body("name").optional().isLength({min: 3}).withMessage("O nome deve ter no minimo 3 caracteres."),
-        body("password").optional().isLength({min: 6}).withMessage("A senha deve ter no minimo 6 caracteres."),
-    ];
-};
+// export const userUpdateValidation = () => {
+//     return [
+//         body("name").optional().isLength({min: 3}).withMessage("O nome deve ter no minimo 3 caracteres."),
+//         body("password").optional().isString().withMessage("O senha é obrigatorio").isLength({min: 6}).withMessage("A senha deve ter no minimo 6 caracteres."),
+//     ];
+// };

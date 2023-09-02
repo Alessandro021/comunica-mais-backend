@@ -42,8 +42,26 @@ export const getCurrentUser = async (req, res) => {
 
 export const updateUser = async (req, res) => {
 
+    let errors = [];
+
     const  {name, password, bio} = req.body;
 
+    if(name) {
+        if(name.length < 3) {
+            errors.push({name: "O nome deve ter no minimo 3 caracteres."});
+        }
+    }
+
+    if(password){
+        if(password.length < 6) {
+            errors.push({password: "A senha deve ter no minimo 6 caracteres."});
+        }
+    }
+
+    if(errors.length > 0){
+        return res.status(422).json({error: true, errors: errors});
+    }
+        
     let profileImage = null;
 
     if(req.file){

@@ -14,11 +14,17 @@ export const updateUserProvider = async (user, userId) => {
 
         const updateUser = await prisma.user.update({
             where: {id: userId},
-            data: newObjectUser
+            data: newObjectUser,
+            select: {
+                name: true,
+                email: true,
+                bio: true,
+                profileImage: true,
+            }
         });
 
         if(updateUser){
-            return; 
+            return updateUser; 
         } else {
             return Error("Errro ao atulizar usuario.");
         }

@@ -75,7 +75,7 @@ export const updateUser = async (req, res) => {
         return res.status(500).json({error: true, errors: [{error: result.message}]});
     }
 
-    return res.status(204).send();
+    return res.status(200).json({error: false, result: result});
 };
 
 export const getUserById = async (req, res) => {

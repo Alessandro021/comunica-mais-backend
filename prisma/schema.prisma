@@ -22,7 +22,7 @@ model User {
    profileImage String? //@default("null")
    bio String? //@default("null")
    created_at DateTime @default(now())
-   updated_at DateTime @default(now())
+   updated_at DateTime @updatedAt
 
   @@map("user")
   @@index([email, name])
@@ -37,7 +37,7 @@ model Photo {
    userName String
    userId String @db.ObjectId()
    created_at DateTime @default(now())
-   updated_at DateTime @default(now())
+   updated_at DateTime @updatedAt
 
   @@map("photo")
   @@index([image])

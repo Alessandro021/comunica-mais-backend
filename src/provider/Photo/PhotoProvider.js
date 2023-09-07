@@ -7,7 +7,16 @@ export const insertPhotoProvider = async (photo, userId) => {
         });
 
         const inserPhoto = await prisma.photo.create({
-            data: {...photo, userId: user.id, userName: user.name}
+            data: {...photo, userId: user.id, userName: user.name},
+            select: {
+                id: true,
+                image: true,
+                title: true,
+                userId: true,
+                userName: true,
+                comments: true,
+                likes: true  
+            }
             // data: {title: photo.title, image: photo.image, userId: user.id, userName: user.name, 
             //     comments: {
             //         create: {
@@ -24,7 +33,7 @@ export const insertPhotoProvider = async (photo, userId) => {
 
 
         if(inserPhoto){
-            return inserPhoto.id;
+            return inserPhoto;
         } else {
             return Error("Erro ao adicionar foto");
         }

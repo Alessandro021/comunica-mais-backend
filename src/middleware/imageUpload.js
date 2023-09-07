@@ -24,7 +24,7 @@ export const imageUpload = multer({
     storage: imageaStore,
     fileFilter: (req, file, callback) => {
         try {
-            if(!file.originalname.match(/\.(jpg|jpeg)$/)){
+            if(!file.originalname.match(/\.(jpg|jpeg|png)$/)){
                 return callback(new Error("Atenção a extenção da imagem deve ser png ou jpg"));
             }
             callback(undefined, true);

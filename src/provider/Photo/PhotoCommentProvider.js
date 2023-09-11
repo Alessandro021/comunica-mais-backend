@@ -31,7 +31,7 @@ export const commentPhotoProvider = async (photoId, userId, comment) => {
         });
 
         if(commentPhoto){
-            return {comment: commentPhoto.comment, message: "O comentario foi adicionado com sucesso!"};
+            return {comment: commentPhoto, message: "O comentario foi adicionado com sucesso!"};
         } else {
             return Error("Erro ao comentar foto de publicação");
         }

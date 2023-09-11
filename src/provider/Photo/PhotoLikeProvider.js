@@ -20,7 +20,7 @@ export const likePhotoProvider = async (photoId, userId) => {
         });
 
         if(LikePhoto){
-            return {userId: photoExist.id, photoId: photoId, message: "Foto excluida com sucesso!"};
+            return {userId: userId, photoId: photoId, message: "Foto curtida com sucesso!"};
         } else {
             return Error("Erro ao curtir foto de publicação");
         }
